@@ -35,6 +35,7 @@ ecmascript-collections@0.1.6
 ejson@1.0.7
 email@1.0.7
 fastclick@1.0.7
+fezvrasta:bootstrap-material-design@0.5.9
 geojson-utils@1.0.4
 hot-code-push@1.0.0
 html-tools@1.0.5
@@ -94,6 +95,7 @@ standard-minifiers@1.0.0
 templating@1.1.3
 templating-tools@1.0.0
 tracker@1.0.8
+twbs:bootstrap@3.3.6
 ui@1.0.8
 underscore@1.0.4
 underscorestring:underscore.string@3.0.3_1

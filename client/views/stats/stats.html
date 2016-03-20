@@ -1,21 +1,132 @@
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eggs Benedict</title>
+    
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Eggs Benedict</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+    <!-- Div used to ensure nothing goes behind nav -->
+    <div style="line-height: 70px;"><br/></div>
+    
+    {{> stats}}
+    
+    
+    <script>
+        $(function(){
+            $.material.init();
+            
+        });
+    </script>
+</body>
+
+
+
+
 <template name="stats">
+    <div class="container">
+        <div class="jumbotron">
 
-<form>
+            <form class="form-horizontal">
 
-    <input type="checkbox" class="conversion" name="conversion" /> Metric
-    <input type="text" class="weight" name="weight" /> Height
-    <input type="text" class="age" name="age" /> Age
-    <input type="radio" class="gender" name="gender" value="male" /> Male
-    <input type="radio" class="gender" name="gender" value="female" />Female
-    {{#if hideMetric}}
-        <input type="text" class="height" name="height" />cm
-    {{else}}
-          <input type="text" class="height_inches" name="height_inches" /> Inches
-          <input type="text" class="height_feet" name="height_feet" /> Feet
-    {{/if}}
+                    <legend>Give us some details...</legend>
+                    <div style="padding-left: 20px;">
+                        <!-- Metric Input -->
+                        <div class="togglebutton">
+                          <label>
+                            <input type="checkbox" class="conversion" name="conversion"> In Metric?
+                          </label>
+                        </div>
+                        <!-- Weight Input -->
+                        <div class="form-group label-floating is-empty">
+                            <label for="weight" class="control-label">Weight</label>
+                            <br />
+                            <input type="number" class="form-control weight" id="weightIn" name="weight" required>
+                            <span class="material-input"></span>
+                        </div>
 
-    <input type="submit" />
+                        <!-- Weight Input -->
+                        <div class="form-group label-floating is-empty">
+                            <label for="age" class="control-label">Age</label>
+                            <br />
+                            <input type="number" class="form-control age" id="ageIn" name="age" required>
+                            <span class="material-input"></span>
+                        </div>
 
-</form>
+                        <!-- Gender Input -->
+                        <div class="radio radio-primary">
+                          <label>
+                            <input type="radio" name="gender" class="male" id="genderMale" value="male">
+                            Male
+                          </label>
+                        </div>
+                        <div class="radio radio-primary">
+                          <label>
+                            <input type="radio" name="gender" class="female" id="genderFemale" value="female">
+                            Female
+                          </label>
+                        </div>
+
+
+
+                {{#if hideMetric}}
+                    <!-- Height Input if metric is checked -->
+                    <div class="form-group label-floating is-empty">
+                        <label for="height" class="control-label">cm</label>
+                        <br />
+                        <input type="number" class="form-control height" id="heightIn" name="height" required>
+                        <span class="material-input"></span>
+                    </div>
+                {{else}}
+                    <!-- Height Input if metric isn't checked -->
+                    <div class="form-group label-floating is-empty">
+                        <label for="height_inches" class="control-label">Inches</label>
+                        <br />
+                        <input type="number" class="form-control height_inches" id="heightInchesIn" name="height_inches" required>
+                        <span class="material-input"></span>
+                    </div>
+
+                    <div class="form-group label-floating is-empty">
+                        <label for="height_feet" class="control-label">Feet</label>
+                        <br />
+                        <input type="number" class="form-control height_feet" id="heightInchesIn" name="height_feets" required>
+                        <span class="material-input"></span>
+                    </div>
+
+                {{/if}}
+                        <input type='submit'  class="btn btn-primary" />
+
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+    
+    
+    {{#each stat}}
+        <li> Height: {{height}} Gender: {{gender}} Weight: {{weight}}:   Age: {{age}} </li>
+    {{/each}}
 
 </template>
