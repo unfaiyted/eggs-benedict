@@ -1,0 +1,21 @@
+<template name="stats">
+
+<form>
+
+    <input type="checkbox" class="conversion" name="conversion" /> Metric
+    <input type="text" class="weight" name="weight" /> Height
+    <input type="text" class="age" name="age" /> Age
+    <input type="radio" class="gender" name="gender" value="male" /> Male
+    <input type="radio" class="gender" name="gender" value="female" />Female
+    {{#if hideMetric}}
+        <input type="text" class="height" name="height" />cm
+    {{else}}
+          <input type="text" class="height_inches" name="height_inches" /> Inches
+          <input type="text" class="height_feet" name="height_feet" /> Feet
+    {{/if}}
+
+    <input type="submit" />
+
+</form>
+
+</template>
