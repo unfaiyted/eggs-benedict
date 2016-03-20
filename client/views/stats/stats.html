@@ -2,11 +2,11 @@
 
 <form>
 
-    <input type="checkbox" class="conversion" name="conversion" /> Metric
-    <input type="text" class="weight" name="weight" /> Height
-    <input type="text" class="age" name="age" /> Age
-    <input type="radio" class="gender" name="gender" value="male" /> Male
-    <input type="radio" class="gender" name="gender" value="female" />Female
+   In Metric? <input type="checkbox" class="conversion" name="conversion" />
+   Weight <input type="text" class="weight" name="weight" />
+   Age <input type="text" class="age" name="age" />
+   Male <input type="radio" class="gender" name="gender" value="male" /> <br/>
+   Female <input type="radio" class="gender" name="gender" value="female" /> <br/>
     {{#if hideMetric}}
         <input type="text" class="height" name="height" />cm
     {{else}}
@@ -17,5 +17,11 @@
     <input type="submit" />
 
 </form>
+
+
+       {{#each stat}}
+        <li> {{height}} {{gender}} {{weight}}:   {{age}} </li>
+        {{/each}}
+
 
 </template>

@@ -5,10 +5,12 @@ stats.attachSchema(
     weight: {
       type: Number,
       label: "Current Weight",
+        decimal: true
     },
     height: {
       type: Number,
-      label: "Height"
+      label: "Height",
+      decimal: true
     },
     gender: {
       type: String,
@@ -18,10 +20,17 @@ stats.attachSchema(
       type: Number,
         label:"Age"
     },
+
     createdAt: {
       type: Date,
       denyUpdate: true,
-      label:"Created At"
+      label:"Created At",
+        autoValue: function() {
+            if (this.isInsert) {
+                return new Date;
+            }
+        }
+
     },
     updatedAt: {
       type: Date,
@@ -39,6 +48,7 @@ stats.attachSchema(
 // Collection2 already does schema checking
 // Add custom permission rules if needed
 if (Meteor.isServer) {
+
   stats.allow({
     insert : function () {
       return true;
@@ -50,4 +60,31 @@ if (Meteor.isServer) {
       return true;
     }
   });
+
+   Meteor.methods({
+        insertStats: function(weight, height, gender, age){
+
+
+            check(weight, Number);
+            check(height, Number);
+            check(gender, String);
+            check(age, Number);
+
+            stats.insert({
+               weight: weight,
+               height: height,
+               gender: gender,
+               age: age,
+               updatedAt: new Date(),
+               createdAt: new Date()
+
+            });
+        },
+        deleteStats: function (statsId) {
+            stats.remove(statsId);
+        }
+
+    });
+
 }
+
