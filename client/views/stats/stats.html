@@ -1,51 +1,11 @@
 
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eggs Benedict</title>
-    
-
-</head>
-
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Eggs Benedict</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-    <!-- Div used to ensure nothing goes behind nav -->
-    <div style="line-height: 70px;"><br/></div>
-    
-    {{> stats}}
-    
-    
-    <script>
-        $(function(){
-            $.material.init();
-            
-        });
-    </script>
+{{>stats}}
 </body>
 
-
-
-
 <template name="stats">
-    <div class="container">
+
+    <div class="container" id="stats">
         <div class="jumbotron">
 
             <form class="form-horizontal">
@@ -87,6 +47,18 @@
                             Female
                           </label>
                         </div>
+                        <!-- Activity Level Input -->
+                        <div class="form-group">
+                          <label for="activityLevel" class="control-label">How active are you?</label>
+                            <select id="activityLevel" name="activityLevel" class="form-control">
+                              <option value="1">1 - Little or no exercise</option>
+                              <option value="2">2 - Light exercise(1-3 days a week)</option>
+                              <option value="3">3 - Moderate exercise(3-5 days a week)</option>
+                              <option value="4">4 - Heavy exercise(6-7 days a week)</option>
+                              <option value="5">5 - Very Heavy exercise(twice a day or extra heavy workouts)</option>
+                            </select>
+                        </div>
+                        
 
 
 
@@ -128,5 +100,5 @@
     {{#each stat}}
         <li> Height: {{height}} Gender: {{gender}} Weight: {{weight}}:   Age: {{age}} </li>
     {{/each}}
-
+    
 </template>

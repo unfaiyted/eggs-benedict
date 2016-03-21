@@ -1,9 +1,16 @@
 <body>
-    <!-- Div used to ensure nothing goes behind nav -->
-    <div style="line-height: 70px;"><br/></div>
+<!-- Div used to ensure nothing goes behind nav -->
+<div style="line-height: 70px;"><br/></div>
 {{>calculations}}
 </body>
 
 <template name="calculations">
-    <p>Calculations:</p>
+    <div class="container" id="calculations">
+        <div class="jumbotron">
+            <h1>Calculations:</h1>
+            {{#each calculation}}
+                Your Basal metabolic rate(BMR) is: <b>{{BMR}}</b><br /> How many calories you should have a day: <b>{{caloriesPerDay}}</b>
+            {{/each}}
+        </div>
+    </div>
 </template>
