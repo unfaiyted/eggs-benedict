@@ -6,19 +6,29 @@ Template['loginBox'].helpers({
     },
       "switch": function() {
             var registerSet = Session.get("switchSet");
+            
+            
             if (registerSet == true) {
                   return {
                           current: "Register", 
                           opposite: "Login", 
-                          string: "Need an account?"
+                          string: "Already have an account?"
                           };
             } else {
                   return {
                           current: "Login", 
                           opposite: "Register", 
-                          string: "Already have an account?"
+                          string: "Need an account?"
                           };
             }
+      },
+      "formError": function() {
+            var error = Session.get("formError");
+            var errorDetail = Session.get("errorDetail");
+            if (error == true) {
+            return { valid: true, detail: errorDetail };
+            }
+            
       }
     
 });
@@ -27,48 +37,94 @@ Template['loginBox'].events({
  "click .open-modal" : function(e,t) {
         e.preventDefault();
         Session.set("switchSet", false);
+         Session.set("formError", false);
         $("#loginModal").modal("show");
         },
         
  "click .close-modal": function(e,t) {
       e.preventDefault();
       Session.set("switchSet", false);
+       Session.set("formError", false);
       $("#loginModal").modal("hide");
       
  }, "click .Register-user": function(e,t) {
       e.preventDefault();
+      e.target.value = "";
       Session.set("switchSet", true);
+       Session.set("formError", false);
       
  },"click .Login-user": function(e,t) {
       e.preventDefault();
+      e.target.value = "";
       Session.set("switchSet", false);
+       Session.set("formError", false);
      
     /* Submitting Login  */
       
  },"click .Register-button": function(e,t) {
       e.preventDefault();
+      
     var email = t.find("input[name=inputEmail]").value;
     var password = t.find("input[name=inputPassword]").value;
     var passwordRepeat = t.find("input[name=repeatPassword]").value;
+
+   
+     var $this = $(e.target);
+        $this.button('loading');
     
     
     Accounts.createUser({
         email: email,
-        password:password
-    }), function(error) {
+        password: password
+    },  function(error,result) {
         if (error) {
-            alert(error);
+            console.log(error.reason);
+            Session.set("formError", true);
+            Session.set("errorDetail", error.reason);
         }else {
+              Session.set("formError", false);
             Router.go('/');
+            $("#loginModal").modal("hide");
         }
-    }
-        
+    });
+    
+    
+     setTimeout(function() {
+             $this.button('reset');
+       }, 2000);
+    
+  
 },"click .Login-button": function(e,t) {
       e.preventDefault();
+      
+     
+        var $this = $(e.target);
+        $this.button('loading');
+    
+      
       var email = t.find("input[name=inputEmail]").value;
       var password = t.find("input[name=inputPassword]").value;
         
-      Meteor.loginWithPassword(email, password);
+      Meteor.loginWithPassword(email, password,
+      
+       function(error,result) {
+        if (error) {
+            console.log(error.reason);
+            Session.set("formError", true);
+            Session.set("errorDetail", error.reason);
+        }else {
+              Session.set("formError", false);
+            Router.go('/');
+              $("#loginModal").modal("hide");
+        }
+    });
+      
+      setTimeout(function() {
+             $this.button('reset');
+       }, 2000);
+       
+      
+      
  }
 
 });
@@ -76,7 +132,10 @@ Template['loginBox'].events({
 
 
 Template['login'].helpers({
-  
+    "userEmail": function() {
+            return Meteor.user().emails[0].address;
+            
+      }
       
 });
 
@@ -87,3 +146,5 @@ Template['login'].events({
     }
  
 });
+
+

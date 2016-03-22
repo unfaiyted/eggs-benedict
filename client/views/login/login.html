@@ -1,8 +1,8 @@
   <template name="login">
    {{#if currentUser}}
-      <a data-toggle="modal" href="#loginModal">Login</a>
+        <a href="#logout" class="logout">Logout ({{userEmail}})</a>
    {{else}}
-      <a href="#logout" class="logout">Logout ({{currentUser.username}})</a>
+       <a data-toggle="modal" href="#loginModal">Login</a>
    {{/if}}
  </template>
 
@@ -17,6 +17,16 @@
           <h4 class="modal-title" id="myModalLabel">{{switch.current}}</h4>
         </div>
          <div class="modal-body">
+      
+                
+               {{#if formError.valid}}
+                <div class="alert alert-danger">
+                    
+                    <strong>Oh snap!</strong>
+                   {{formError.detail}}
+                  </div>
+                  {{/if}}
+                
       
                {{#if currentUser}}
                       {{#if currentUser.username}}
@@ -36,9 +46,13 @@
             {{/if}}
             
               <div class="modal-footer">
+                    
+                  
                   <span class="text-primary">{{switch.string}}<a href="#{{switch.opposite}}" class="{{switch.opposite}}-user btn btn-link">
                     {{switch.opposite}}!</a></span>
-       <button type="button" class="btn btn-raised btn-info {{switch.current}}-button">{{switch.current}}</button>
+       <button type="button" class="btn btn-primary btn-lg {{switch.current}}-button" id="load"
+        data-loading-text="<i class='material-icons'>face</i> Loading" >{{switch.current}}</button>
+             
              </div>
              
         </div>

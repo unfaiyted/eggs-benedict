@@ -1,4 +1,6 @@
 Meteor.subscribe("stats");
+Meteor.subscribe("users");
+
 
 Template['stats'].helpers({
     'stat': function() {
