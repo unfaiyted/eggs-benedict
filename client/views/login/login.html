@@ -1,0 +1,38 @@
+  <template name="login">
+  
+  <a href="#login" class="open-modal">Login</a>
+  
+<div class="modal fade in" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close close-modal" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Big Image</h4>
+        </div>
+        <div class="modal-body">
+         
+         
+               {{#if currentUser}}
+-                {{#if currentUser.username}}
+-                  Hi {{currentUser.username}}!
+-                {{/if}}
+-               
+-                    <i class="sign out icon"></i>
+-                    Log out 
+-              
+-            {{else}}
+-            {{> atForm }}
+-            {{/if}}
+             
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  
+</template>
