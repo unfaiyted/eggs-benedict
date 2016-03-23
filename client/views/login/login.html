@@ -1,6 +1,31 @@
   <template name="login">
    {{#if currentUser}}
-        <a href="#logout" class="logout">Logout ({{userEmail}})</a>
+         <a href="#logout" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Profile <b class="caret"></b></a>
+       
+          <ul class="dropdown-menu">
+            <li>
+                 
+                  
+                 
+                   
+                 <a href="#profile">  
+                 
+                 {{#if userAvatar.valid}}
+                       <img src="{{userAvatar.location}}"   class="img-circle" alt="icon" width="56px" height="56px" border="0">
+                 {{else}}
+                       <div class="action-secondary"><i class='material-icons'>face</i></div>
+                 {{/if}}
+                 View Profile</a>
+                
+                  </li>
+            <li><a href="#historical">Another action</a></li>
+            <li><a href="#notsure">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Account</li>
+            <li><a href="#account">Settings</a></li>
+            <li><a href="#logout" class="logout">Logout ({{userEmail}})</a></li>
+          </ul>
+        
    {{else}}
        <a data-toggle="modal" href="#loginModal">Login</a>
    {{/if}}
@@ -52,6 +77,8 @@
                     {{switch.opposite}}!</a></span>
        <button type="button" class="btn btn-primary btn-lg {{switch.current}}-button" id="load"
         data-loading-text="<i class='material-icons'>face</i> Loading" >{{switch.current}}</button>
+        
+        <button type="button" class="btn btn-primary btn-lg google-login">Google Login</button>
              
              </div>
              

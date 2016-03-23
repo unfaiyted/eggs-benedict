@@ -78,7 +78,6 @@ Template['loginBox'].events({
         password: password
     },  function(error,result) {
         if (error) {
-            console.log(error.reason);
             Session.set("formError", true);
             Session.set("errorDetail", error.reason);
         }else {
@@ -109,7 +108,38 @@ Template['loginBox'].events({
       
        function(error,result) {
         if (error) {
-            console.log(error.reason);
+            Session.set("formError", true);
+            Session.set("errorDetail", error.reason);
+        }else {
+              Session.set("formError", false);
+            Router.go('/');
+              $("#loginModal").modal("hide");
+        }
+    });
+      
+      setTimeout(function() {
+             $this.button('reset');
+       }, 2000);
+       
+      
+      
+ },"click .google-login": function(e,t) {
+      e.preventDefault();
+      
+     
+        var $this = $(e.target);
+        $this.button('loading');
+    
+      
+      var email = t.find("input[name=inputEmail]").value;
+      var password = t.find("input[name=inputPassword]").value;
+        
+      Meteor.loginWithGoogle({
+                requestPermissions: ['email', 'profile']
+            },
+      
+       function(error,result) {
+        if (error) {
             Session.set("formError", true);
             Session.set("errorDetail", error.reason);
         }else {
@@ -126,16 +156,25 @@ Template['loginBox'].events({
       
       
  }
+ 
+ 
 
 });
 
-
-
 Template['login'].helpers({
     "userEmail": function() {
-            return Meteor.user().emails[0].address;
-            
-      }
+         var meteorEmail = Meteor.user().emails[0].address;
+           return meteorEmail;
+      }, 
+    "userAvatar": function() {
+        
+     if (Meteor.users.find({'profile.avatar': {$exists : true }}).count() == 0)  {
+                   return { valid: false, location: "" }; 
+             } else {
+                  return { valid: true, location:  Meteor.user().profile.avatar };
+                  
+             }
+    },
       
 });
 
@@ -148,3 +187,4 @@ Template['login'].events({
 });
 
 
+ 
