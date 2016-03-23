@@ -157,7 +157,6 @@ Template['loginBox'].events({
       
  }
  
- 
 
 });
 
@@ -172,10 +171,8 @@ Template['login'].helpers({
                    return { valid: false, location: "" }; 
              } else {
                   return { valid: true, location:  Meteor.user().profile.avatar };
-                  
              }
     },
-      
 });
 
 Template['login'].events({

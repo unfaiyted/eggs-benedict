@@ -5,15 +5,12 @@
           <ul class="dropdown-menu">
             <li>
                  
-                  
-                 
-                   
                  <a href="#profile">  
                  
                  {{#if userAvatar.valid}}
                        <img src="{{userAvatar.location}}"   class="img-circle" alt="icon" width="56px" height="56px" border="0">
                  {{else}}
-                       <div class="action-secondary"><i class='material-icons'>face</i></div>
+                      <i class='material-icons'>tag_faces</i>
                  {{/if}}
                  View Profile</a>
                 
@@ -75,11 +72,15 @@
                   
                   <span class="text-primary">{{switch.string}}<a href="#{{switch.opposite}}" class="{{switch.opposite}}-user btn btn-link">
                     {{switch.opposite}}!</a></span>
-       <button type="button" class="btn btn-primary btn-lg {{switch.current}}-button" id="load"
-        data-loading-text="<i class='material-icons'>face</i> Loading" >{{switch.current}}</button>
+       <button type="button" class="btn  btn-raised  btn-primary btn-lg {{switch.current}}-button" id="load"
+        data-loading-text="<i class='fa fa-spinner'></i> Loading" >{{switch.current}}</button> <br />
         
-        <button type="button" class="btn btn-primary btn-lg google-login">Google Login</button>
-             
+        
+        
+         <button href="#" class="btn btn-info btn-sm"><i class="fa fa-twitter"></i> <span></span>twitter</button>
+          <button href="#" class="btn btn-raised btn-info btn-sm"><i class="fa fa-facebook"></i> <span></span>facebook</button>
+          <button href="#" class="btn btn-raised btn-danger btn-sm google-login"><i class="fa fa-google-plus"></i> <span></span>google +</button>
+
              </div>
              
         </div>

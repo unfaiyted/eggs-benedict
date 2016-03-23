@@ -1,14 +1,5 @@
-
-<body>
-{{>stats}}
-</body>
-
 <template name="stats">
 
-    <div class="container" id="stats">
-        <div class="jumbotron">
-
-            
             <form class="form-horizontal">
 
                     <legend>Give us some details...</legend>
@@ -93,9 +84,7 @@
 
 
             </form>
-        </div>
-    </div>
-    
+ 
     
     {{#each stat}}
         <li> Height: {{height}} Gender: {{gender}} Weight: {{weight}}:   Age: {{age}} </li>

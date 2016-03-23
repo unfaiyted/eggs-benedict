@@ -10,7 +10,6 @@ ServiceConfiguration.configurations.insert({
 });
 
 
-
 Accounts.onCreateUser(function(options, user) {
   var attachData, email, picture, profileImageUrl, profilePicture, url, service,
       allEmails, firstEmail;
