@@ -25,12 +25,83 @@ body.modal-open div.modal-backdrop {
 } 
 
 
-#calculations{
+#calculation{
     display: none;
 }
 
-.footer{
-    position: relative;
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 75px; /* choose any height */
+    background: #2196F3;
+    border-top: 11px solid #64B5F6;
+}
+.footer-text{
+    color: white;
+    padding-top: 5px;
+    font-size: 1.5em;
+}
+@media screen and (max-device-width: 480px) {
+    .footer-text{font-size: 1em;}
+}
+@media screen and (max-width: 430px){
+    .footer-text{font-size: 0.6em;}
+}
+.footer-text a{
+    transition: 0.4s;
+}
+.footer-text a:hover{
+    color: white;
+    transition: 0.4s;
+    opacity: 0.7;
+    text-decoration: none;
+}
+.navi-button{
+    position: absolute;
+    bottom: 15px;
+}
+.back-button{
+    transition: 0.5s;
+    left: 20px;
+}
+.back-button:hover{
+    transition: 0.5s;
+    opacity: 0.8;
+    left: 17px;
+}
+.forward-button{
+    transition: 0.5s;
+    right: 20px;
+}
+.forward-button:hover{
+    transition: 0.5s;
+    opacity: 0.8;
+    right: 17px;
+}
+.navi-button-text{
+    position: absolute;
+    font-size: 0.8em;
+    color: white;
+    bottom: 20px;
+}
+.back-navi-text{
+    left: 35px;
+}
+.forward-navi-text{
+    right: 35px;
+}
+.navi-button-desc{
+    position: absolute;
+    color: white;
+    opacity: 0.6;
+    bottom: 12px;
+}
+.back-navi-desc{
+    left: 65px;
+}
+.forward-navi-desc{
+    right: 65px;
 }
 a {
     color: inherit;
@@ -74,14 +145,6 @@ a {
 
 }
 
-.page-footer {
-    background-color: #424242;
-    font-color: #E0E0E0;
-     
-    .footer-copyright{
-       background-color: #616161; 
-       font-color: #E0E0E0;
-    }
-}
+
 
 
