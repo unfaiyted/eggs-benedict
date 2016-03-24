@@ -2,8 +2,11 @@
 
             <form class="form-horizontal">
 
-                    <legend>Give us some details...</legend>
-                    <div style="padding-left: 20px;">
+
+            <legend>Give us your details...</legend>
+             <div class="form-group">
+                    
+                    <div style="padding-left: 30px; padding-right: 30px;">
                         <!-- Metric Input -->
                         <div class="togglebutton">
                           <label>
@@ -14,7 +17,7 @@
                         <div class="form-group label-floating is-empty">
                             <label for="weight" class="control-label">Weight</label>
                             <br />
-                            <input type="number" class="form-control weight" id="weightIn" name="weight" required>
+                            <input type="number" class="form-control weight" id="weightIn" name="weight" required placeholder="{{weightType}}">
                             <span class="material-input"></span>
                         </div>
 
@@ -22,7 +25,7 @@
                         <div class="form-group label-floating is-empty">
                             <label for="age" class="control-label">Age</label>
                             <br />
-                            <input type="number" class="form-control age" id="ageIn" name="age" required>
+                            <input type="number" class="form-control age" id="ageIn" name="age" required placeholder="25 years">
                             <span class="material-input"></span>
                         </div>
 
@@ -30,13 +33,13 @@
                         <div class="radio radio-primary">
                           <label>
                             <input type="radio" name="gender" class="male" id="genderMale" value="male">
-                            Male
+                            <i class="fa fa-male"></i> Male 
                           </label>
-                        </div>
-                        <div class="radio radio-primary">
+                
                           <label>
                             <input type="radio" name="gender" class="female" id="genderFemale" value="female">
-                            Female
+                            <i class="fa fa-female"></i>
+                            Female 
                           </label>
                         </div>
                         <!-- Activity Level Input -->
@@ -57,7 +60,7 @@
                     <div class="form-group label-floating is-empty">
                         <label for="height" class="control-label">cm</label>
                         <br />
-                        <input type="number" class="form-control height" id="heightIn" name="height" required>
+                        <input type="number" class="form-control height" id="heightIn" name="height" required placeholder="10 cm.">
                         <span class="material-input"></span>
                     </div>
                 {{else}}
@@ -65,29 +68,37 @@
                      <div class="form-group label-floating is-empty">
                         <label for="height_feet" class="control-label">Feet</label>
                         <br />
-                        <input type="number" class="form-control height_feet" id="heightInchesIn" name="height_feet" required>
+                        <input type="number" class="form-control height_feet" id="heightInchesIn" name="height_feet" required placeholder="5 ft.">
                         <span class="material-input"></span>
                     </div>
                      
                     <div class="form-group label-floating is-empty">
                         <label for="height_inches" class="control-label">Inches</label>
                         <br />
-                        <input type="number" class="form-control height_inches" id="heightInchesIn" name="height_inches" required>
+                        <input type="number" class="form-control height_inches" id="heightInchesIn" name="height_inches" required placeholder="10 in.">
                         <span class="material-input"></span>
                     </div>
 
 
                 {{/if}}
-                        <input type='submit'  class="btn btn-primary" />
+                        <input type='submit'  class="btn btn-raised btn-success" />
+                        
+                
 
                 </div>
+
+
+ </div>
 
 
             </form>
  
     
-    {{#each stat}}
-        <li> Height: {{height}} Gender: {{gender}} Weight: {{weight}}:   Age: {{age}} </li>
-    {{/each}}
-    
 </template>
+
+
+  <template name="statsList">
+        {{#each stat}}
+            <li> Height: {{height}} Gender: {{gender}} Weight: {{weight}}:   Age: {{age}} </li>
+        {{/each}}
+  </template>

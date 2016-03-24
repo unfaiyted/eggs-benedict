@@ -13,7 +13,7 @@ stats.attachSchema(
     },
     gender: {
       type: String,
-      label: "Gender"
+      label: "Gender",
     },
     age: {
       type: Number,

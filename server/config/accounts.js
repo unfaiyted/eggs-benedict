@@ -10,13 +10,23 @@ ServiceConfiguration.configurations.insert({
 });
 
 
+ServiceConfiguration.configurations.remove({
+    service: 'facebook'
+});
+ 
+ServiceConfiguration.configurations.insert({
+    service: 'facebook',
+    appId: '238160829863958',
+    secret: '725672b73edf3d68194d186ec3bb4d2d'
+});
+
+
 Accounts.onCreateUser(function(options, user) {
   var attachData, email, picture, profileImageUrl, profilePicture, url, service,
       allEmails, firstEmail;
   
   profileImageUrl = undefined;
   user.profile = user.profile || {};
-
 
 
       if (user.services.google) {
@@ -31,6 +41,23 @@ Accounts.onCreateUser(function(options, user) {
       user.profile.lastName = user.services.google.family_name;
       user.profile.avatar = user.services.google.picture;
       
+      } 
+      
+      if (user.services.facebook) {
+         user.emails = [
+          {
+           address: user.services.facebook.email,
+           verified: true
+          }
+        ];
+        
+      user.profile.firstName = user.services.facebook.name;
+      user.profile.lastName = user.services.facebook.name;
+      user.profile.avatar = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+  
+      
+      
+        
       }
       
     

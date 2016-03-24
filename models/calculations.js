@@ -16,7 +16,7 @@ calculations.attachSchema(
     gender: {
       type: String,
       label: "Gender",
-      allowedValues: ['Male', 'Female']
+      allowedValues: ['male', 'female']
     },
     age: {
       type: Number,

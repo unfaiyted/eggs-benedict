@@ -28,7 +28,6 @@ Template['loginBox'].helpers({
             if (error == true) {
             return { valid: true, detail: errorDetail };
             }
-            
       }
     
 });
@@ -129,10 +128,7 @@ Template['loginBox'].events({
      
         var $this = $(e.target);
         $this.button('loading');
-    
-      
-      var email = t.find("input[name=inputEmail]").value;
-      var password = t.find("input[name=inputPassword]").value;
+   
         
       Meteor.loginWithGoogle({
                 requestPermissions: ['email', 'profile']
@@ -149,6 +145,40 @@ Template['loginBox'].events({
         }
     });
       
+
+
+
+
+      setTimeout(function() {
+             $this.button('reset');
+       }, 2000);
+       
+      
+      
+ },"click .facebook-login": function(e,t) {
+      e.preventDefault();
+      
+     
+        var $this = $(e.target);
+        $this.button('loading');
+   
+        
+      Meteor.loginWithFacebook({
+              
+            },
+      
+       function(error,result) {
+        if (error) {
+            Session.set("formError", true);
+            Session.set("errorDetail", error.reason);
+        }else {
+              Session.set("formError", false);
+            Router.go('/');
+              $("#loginModal").modal("hide");
+        }
+    });
+
+
       setTimeout(function() {
              $this.button('reset');
        }, 2000);

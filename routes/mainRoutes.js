@@ -3,6 +3,16 @@ Router.route('/', {
   name: 'home',
   action: function () {
     this.render('home');
-    SEO.set({ title: 'Home - ' + Meteor.App.NAME });
+    SEO.set({ title: '' + Meteor.App.NAME });
   }
 });
+
+// Home Route
+Router.route('/calculate/', {
+  name: 'calculate',
+  action: function () {
+    this.render('calculations');
+    SEO.set({ title: '' + Meteor.App.NAME });
+  }
+});
+

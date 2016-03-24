@@ -1,16 +1,110 @@
-<body>
-<!-- Div used to ensure nothing goes behind nav -->
-<div style="line-height: 70px;"><br/></div>
-{{>calculations}}
-</body>
-
 <template name="calculations">
-    <div class="container" id="calculations">
-        <div class="jumbotron">
-            <h1>Calculations:</h1>
-            {{#each calculation}}
-                Your Basal metabolic rate(BMR) is: <b>{{BMR}}</b><br /> How many calories you should have a day: <b>{{caloriesPerDay}}</b>
-            {{/each}}
-        </div>
+     
+ <script>
+        $(function () {
+    $.material.init();
+    $(".shor").noUiSlider({
+      start: 60,
+      connect: "lower",
+      range: {
+        min: 30,
+        max: 90
+      }
+    });
+
+  });
+ </script>
+    
+<div class="container">
+
+    <ul class="breadcrumb" style="margin-top: 20px; margin-bottom: 10px;">
+      <li><a href="/">Home</a></li>
+      <li class="active">Begin Calculations</li>
+    </ul>
+    
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" style="width: 40%"></div>
     </div>
+    
+    
+         <div class="col-md-4">
+             
+                 <div class="panel panel-one">
+                  <div class="panel-heading"><i class="material-icons">looks_one</i> Intake</div>
+                  <div class="panel-body">
+                    
+                    <p>How many calories do you estimate you will take in per day?</p>
+                    
+                        <div class="form-group">
+                          <label class="control-label" for="focusedInput2">Calories per day</label>
+                          <input class="form-control" id="focusedInput2" type="text" placeholder="2000 calories">
+                          <p class="help-block">2000 calories is the daily recommented value</p>
+                        </div>
+                    
+                    
+                  </div>
+                </div>
+             
+          </div>
+             
+          <div class="col-md-4">
+             
+             <div class="panel panel-two">
+              <div class="panel-heading "><i class="material-icons">looks_two</i>Output</div>
+              <div class="panel-body">
+                
+                 
+                    <p>How many minutes do you plan on working out in addition to your normal activity level?</p>
+                    
+                    
+                         <div class="form-group">
+                          <label class="control-label" for="focusedInput2">Minutes of activity</label>
+                          <input class="form-control" id="focusedInput2" type="text" placeholder="30 minutes">
+                          <p class="help-block">30 minutes a day for better heart health!</p>
+                        </div>
+                
+              </div>
+            </div>
+                     
+          </div>
+            
+          <div class="col-md-4">
+           
+              <div class="panel panel-three">
+              <div class="panel-heading"><i class="material-icons">looks_3</i> Duration</div>
+              <div class="panel-body">
+                
+                <p>Let's set a time based goal. How long do you want to follow this plan?</p>
+                
+                 <div class="form-group">
+                          
+                             <p>Lets plan for <strong>{{sliderValue}}</strong> days!</p>
+                          
+                            <div class="slider shor slider-material-pink" id="calcSlider"></div>
+                            
+                         <p class="text-muted">   Change the slider between <em>30</em> and <em>90</em> days.</p>
+                            
+                         
+                        </div>
+                
+              </div>
+            </div>
+          </div>
+
+    
+    
+    <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4"><a href="javascript:void(0)" class="btn btn-lg btn-block btn-raised btn-success">Let's do it!</a></div>
+        <div class="col-md-4"></div>
+        
+        
+    </div>
+
+
+
+  
+   </div>
+    
 </template>

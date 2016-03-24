@@ -475,6 +475,9 @@ th {
   src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v13/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
 }
 
+
+/* Custom Added*/
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -490,3 +493,31 @@ th {
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
 }
+
+
+.form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label {
+    top: -16px;
+} 
+
+
+
+.panel.panel-one > .panel-heading  {
+ background-color: #90CAF9;
+}
+
+
+.panel.panel-two > .panel-heading {
+     background-color: #80CBC4;
+}
+
+
+.panel.panel-three > .panel-heading {
+     background-color: #FF8A65;
+}
+
+
+.noUi-horizontal {
+    height: 2px;
+    margin: 19px 0;
+}
+

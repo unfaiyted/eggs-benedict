@@ -1,5 +1,4 @@
 Meteor.subscribe("stats");
-Meteor.subscribe("users");
 
 
 Template['stats'].helpers({
@@ -10,6 +9,16 @@ Template['stats'].helpers({
     'hideMetric': function() {
         var selectedMetric = Session.get("setMetric");
         return selectedMetric;
+    },
+    'weightType': function() {
+        var selectedMetric = Session.get("setMetric");
+        
+        if (selectedMetric == true) {
+            return "125 kgs";
+        }else {
+            return "250 lbs";
+        }
+        
     }
 
 });
@@ -49,8 +58,6 @@ Template['stats'].events({
             alert('PLS NO');
         }
         
-
-
         if (Metric == true) {
 
             var weight = parseInt(event.target.weight.value);
@@ -69,10 +76,12 @@ Template['stats'].events({
             $('#calculations').fadeIn('fast');
         });
         
-        Session.set('calculationsOn', 'true');
         Meteor.call("insertStats", weight, height, gender, age);
-        Meteor.call("calculateBMR", gender, weight, height, age, activityLevel);
-        console.log("inserted");
+         console.log("inserted");
+         
+        /*Meteor.call("calculateBMR", gender, weight, height, age, activityLevel); */
+        
+         Session.set('calculationsOn', 'true');
 
     }
 
