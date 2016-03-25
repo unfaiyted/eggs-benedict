@@ -1,20 +1,5 @@
 <template name="calculations">
      
- <script>
-        $(function () {
-    $.material.init();
-    $(".shor").noUiSlider({
-      start: 60,
-      connect: "lower",
-      range: {
-        min: 30,
-        max: 90
-      }
-    });
-
-  });
- </script>
-    
 <div class="container">
 
     <ul class="breadcrumb" style="margin-top: 20px; margin-bottom: 10px;">
@@ -22,9 +7,19 @@
       <li class="active">Begin Calculations</li>
     </ul>
     
+    
+    <div class="alert alert-dismissible alert-info">
+  <button type="button" class="close" data-dismiss="alert">×</button>
+  <strong>Heads up!</strong> Based on the information you put in your BMR is <strong>{{calculation.BMR}}</strong>.
+  This was calculated  based on your input as a  {{calculation.age}} year old {{calculation.gender}}, weighing {{calculation.weight}} kgs 
+  with a height of {{calculation.height}} centimeters. 
+  <p>If that information does not seem correct, click <a href="/">here</a> to start over.</p>
+ </div>
+    
+    
     <!-- Progress Bar -->
     <div class="progress">
-      <div class="progress-bar progress-bar-success" style="width: 40%"></div>
+      <div class="progress-bar progress-bar-success" style="width: 30%"></div>
     </div>
     
     
@@ -36,9 +31,10 @@
                     
                     <p>How many calories do you estimate you will take in per day?</p>
                     
+                       <!-- Calories Intake -->
                         <div class="form-group">
                           <label class="control-label" for="focusedInput2">Calories per day</label>
-                          <input class="form-control" id="focusedInput2" type="text" placeholder="2000 calories">
+                          <input class="form-control" id="focusedInput2" type="text" name="caloriesIn" placeholder="2000 calories">
                           <p class="help-block">2000 calories is the daily recommented value</p>
                         </div>
                     
@@ -57,10 +53,10 @@
                  
                     <p>How many minutes do you plan on working out in addition to your normal activity level?</p>
                     
-                    
+                             <!-- Minutes Exersize Bar -->
                          <div class="form-group">
                           <label class="control-label" for="focusedInput2">Minutes of activity</label>
-                          <input class="form-control" id="focusedInput2" type="text" placeholder="30 minutes">
+                          <input class="form-control" id="focusedInput2" type="text" name="caloriesOut" placeholder="30 minutes">
                           <p class="help-block">30 minutes a day for better heart health!</p>
                         </div>
                 
@@ -78,11 +74,13 @@
                 <p>Let's set a time based goal. How long do you want to follow this plan?</p>
                 
                  <div class="form-group">
-                          
+                               
+                        
                              <p>Lets plan for <strong>{{sliderValue}}</strong> days!</p>
                           
+                             <!-- Slider Bar -->
                             <div class="slider shor slider-material-pink" id="calcSlider"></div>
-                            
+                              <input type="hidden" name="hiddenDays" value="{{sliderValue}}" />    
                          <p class="text-muted">   Change the slider between <em>30</em> and <em>90</em> days.</p>
                             
                          
@@ -96,7 +94,7 @@
     
     <div class="col-md-12">
         <div class="col-md-4"></div>
-        <div class="col-md-4"><a href="javascript:void(0)" class="btn btn-lg btn-block btn-raised btn-success">Let's do it!</a></div>
+        <div class="col-md-4"><a href="#results" class="btn btn-lg btn-block btn-raised btn-success calc-button">Let's do it!</a></div>
         <div class="col-md-4"></div>
         
         

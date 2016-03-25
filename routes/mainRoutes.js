@@ -7,7 +7,7 @@ Router.route('/', {
   }
 });
 
-// Home Route
+// Calculate Route
 Router.route('/calculate/', {
   name: 'calculate',
   action: function () {
@@ -15,4 +15,16 @@ Router.route('/calculate/', {
     SEO.set({ title: '' + Meteor.App.NAME });
   }
 });
+
+
+// Calculate Route
+Router.route('/results/', {
+  name: 'results',
+  action: function () {
+    this.render('results');
+    SEO.set({ title: '' + Meteor.App.NAME });
+  }
+});
+
+
 

@@ -3,8 +3,8 @@ results = new Mongo.Collection('results');
 // Collection2 already does schema checking
 // Add custom permission rules if needed
 if (Meteor.isServer) {
-    stats = Meteor.subscribe('stats');
-  results.allow({
+
+results.allow({
     insert : function () {
       return true;
     },
@@ -16,40 +16,65 @@ if (Meteor.isServer) {
     }
   });
 
+
+
+ 
     Meteor.methods({
-        'batchGenerator': function(gender, weight, height, age, activityAmount, BMR, workoutInCals, numOfDays, calAmount){
-            check(gender, String);
-            check(weight, Number);
-            check(height, Number);
-            check(age, Number);
-            check(activityAmount, Number)
-            check(BMR, Number);
-            check(workoutInCals, Number);
-            check(numOfDays, Number);
-            check(calAmount, Number);
+        'batchGenerator': function(caloriesIn, caloriesOut, days, sessionId){
             
-            var currentUserId = this.userId;
+            check(caloriesIn, Number);
+            check(caloriesOut, Number);
+            check(days, Number);
+          
+    
+            /*Get Data from the BMR Cals*/
+            var calc = calculations.findOne({"sessionId": sessionId}, {sort: {createdAt:-1}, limit: 1});
+            var userId = this.userId;
             var batchId = Random.id();
-            var weightLossInCals = BMR - calAmount + workoutInCals;
+            
+            
+            var BMR = calculateBMR(calc.gender, calc.weight, calc.height, calc.age, calc.activityAmount);
+            
+            var weight = calc.weight;
+            var gender = calc.gender;
+            var height = calc.height;
+            var age = calc.age;
+            var activityAmount = calc.activityAmount;
+            
+            
+            var weightLossInCals = BMR - caloriesIn + caloriesOut;
             var weightLossInKgs = weightLossInCals / 7716;
-            for(var i = 0; i < numOfDays; i++){
+            
+            
+            for(var i = 0; i < days; i++){
+                
                 var currentWeightinCals = weight * 7716;
-                var newWeightInCals = currentWeightinCals - weightLossInCals;
-                var newWeightInKgs = newWeightInCals / 7716;
+                var WeightInCals = currentWeightinCals - weightLossInCals;
+                var WeightInKgs = WeightInCals / 7716;
+                var WeightInLbs = WeightInKgs * 2.20462;
+                
+                var day = i+1;
+              
                 results.insert({
                     batchId: batchId,
-                    createdBy: currentUserId,
-                    newWeightInCals: newWeightInCals,
-                    newWeightInKgs: newWeightInKgs,
-                    newBMR: BMR
+                    sessionId: sessionId,
+                    createdBy: userId,
+                    createdAt: new Date(),
+                    WeightInCals: WeightInCals.toFixed(2),
+                    WeightInKgs: WeightInKgs.toFixed(2),
+                    WeightInLbs: WeightInLbs.toFixed(2),
+                    day: day,
+                    BMR: BMR.toFixed(2)
                 });
-                weight = newWeightInKgs;
-                BMR = Meteor.call('calculateBMR', gender, weight, height, age, activityAmount);
+              
+                weight = WeightInKgs;
+                BMR = calculateBMR(gender, weight, height, age, activityAmount);
             }
             
-            console.log(results.find().fetch());
         }
     });
     
     
 }
+
+  
