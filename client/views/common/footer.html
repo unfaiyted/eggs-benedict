@@ -1,4 +1,6 @@
 <template name="footer">
+    <!-- SPACER -->
+    <div style="line-height: 100px"><br /></div>
     <footer class="page-footer center-on-small-only">
             <div class="container-fluid">
                 <div class="row">
@@ -17,13 +19,12 @@
                 <a href="">&copy; Dane and Dalton Miller</a>
             </div>
             <div class="block-left back-button navi-button">
-                <a href=""><img src="/images/back_button.png" width="35px"/><span class="navi-button-text back-navi-text"><b>Previous</b></span></a>
+                <a href="{{backLocation}}"><img src="/images/back_button.png" width="35px"/><span class="navi-button-text back-navi-text"><b>Previous</b></span></a>
             </div>
-            <div class="navi-button-desc back-navi-desc">some description</div>
+            <div class="navi-button-desc back-navi-desc">{{backDesc}}</div>
             <div class="block-right forward-button navi-button">
-                <a href=""><span class="navi-button-text forward-navi-text"><b>Next</b></span><img src="/images/forward_button.png" width="35px"/></a>
+                <a href="{{forwardLocation}}"><span class="navi-button-text forward-navi-text"><b>Next</b></span><img src="/images/forward_button.png" width="35px"/></a>
             </div>
-        <div class="navi-button-desc forward-navi-desc">Calculations</div>
+        <div class="navi-button-desc forward-navi-desc">{{forwardDesc}}</div>
         </footer>
 </template>
-
