@@ -27,4 +27,35 @@ Router.route('/results/', {
 });
 
 
+// Calculate Route
+Router.route('/profile/', {
+  name: 'profile',
+  action: function () {
+    this.render('profile');
+    SEO.set({ title: '' + Meteor.App.NAME });
+  }
+});
+
+
+// Calculate Route
+Router.route('/about/', {
+  name: 'about',
+  action: function () {
+    this.render('about');
+    SEO.set({ title: '' + Meteor.App.NAME });
+  }
+});
+
+
+// Calculate Route
+Router.route('/contact/', {
+  name: 'contact',
+  action: function () {
+    this.render('contact');
+    SEO.set({ title: '' + Meteor.App.NAME });
+  }
+});
+
+
+
 

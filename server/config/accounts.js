@@ -53,7 +53,7 @@ Accounts.onCreateUser(function(options, user) {
         
       user.profile.firstName = user.services.facebook.name;
       user.profile.lastName = user.services.facebook.name;
-      user.profile.avatar = "http://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
+      user.profile.avatar = "https://graph.facebook.com/" + user.services.facebook.id + "/picture/?type=large";
   
       
       

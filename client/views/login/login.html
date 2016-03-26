@@ -1,4 +1,4 @@
- <body>{{loginBox}}</body>
+
  
  <template name="login">
    {{#if currentUser}}
@@ -7,7 +7,7 @@
           <ul class="dropdown-menu">
             <li>
                  
-                 <a href="#profile">  
+                 <a href="/profile/">  
                  
                  {{#if userAvatar.valid}}
                        <img src="{{userAvatar.location}}"   class="img-circle" alt="icon" width="56px" height="56px" border="0">
@@ -17,12 +17,12 @@
                  View Profile</a>
                 
                   </li>
-            <li><a href="#historical">Another action</a></li>
-            <li><a href="#notsure">Something else here</a></li>
+            <li><a href="#historical">Private Messages</a></li>
+            <li><a href="#notsure">Record Stats</a></li>
             <li class="divider"></li>
             <li class="dropdown-header">Account</li>
             <li><a href="#account">Settings</a></li>
-            <li><a href="#logout" class="logout">Logout ({{userEmail}})</a></li>
+            <li><a href="/" class="logout">Logout ({{userEmail}})</a></li>
           </ul>
         
    {{else}}
@@ -81,7 +81,7 @@
              <div class="btn-group btn-group-justified ">
               <a href="javascript:void(0)" class="btn btn-info btn-sm"><i class="fa fa-twitter"></i> <span></span>twitter</a>
               <a href="javascript:void(0)" class="btn btn-raised btn-info btn-sm facebook-login"><i class="fa fa-facebook"></i> <span></span>facebook</a>
-              <a href="javascript:void(0)" class="btn btn-raised btn-danger btn-sm google-login"><i class="fa fa-google-plus"></i> <span></span>google +</a>
+              <a href="javascript:void(0)" class="btn btn-raised btn-danger btn-sm google-login"><i class="fa fa-google-plus"></i> <span></span>google</a>
             </div>
 
 

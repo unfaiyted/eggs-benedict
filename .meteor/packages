@@ -37,9 +37,9 @@ fezvrasta:bootstrap-material-design
 accounts-google
 service-configuration
 fortawesome:fontawesome
-accounts-facebook
 highcharts:highcharts-meteor
 
 
 highcharts-container
 modweb:arrive
+accounts-facebook

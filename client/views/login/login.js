@@ -163,9 +163,7 @@ Template['loginBox'].events({
         $this.button('loading');
    
         
-      Meteor.loginWithFacebook({
-              
-            },
+     Meteor.loginWithFacebook({},
       
        function(error,result) {
         if (error) {
