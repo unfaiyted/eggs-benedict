@@ -67,6 +67,8 @@ if (Meteor.isServer) {
             
         });
         
+        console.log(seriesEl);
+        
         
         var resultElement = (
         {

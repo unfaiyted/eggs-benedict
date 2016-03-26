@@ -1,103 +1,96 @@
 <template name="home">
-   
-    
+
+
     {{> loginBox}}
-    
+
     <script>
-        $(function(){
+        $(function() {
             $.material.init();
-          
             
+
         });
     </script>
-    
-  <div class="container">  
-<div class="page-header" id="banner">
-    <div class="row">
-      <div class="col-md-6">
-        <h1><i class='fa fa-cutlery'></i> Eggs Benedict</h1>
 
-        <p class="lead">Based on the Harris-Benedict Equation</p>
-        
-  
-        <blockquote>
-     <p>"The <em>Harris–Benedict equation</em> (also called the Harris-Benedict principle) 
-          is a method used to estimate an individual's basal metabolic rate (<strong>BMR</strong>) 
-          and daily kilocalorie requirements. The estimated <strong>BMR</strong> value is multiplied
-          by a number that corresponds to the individual's activity level. The 
-          resulting number is the recommended daily kilocalorie intake to maintain 
-          current body weight."</p>
-      <small>The contributors of <cite title="Wikipedia">
+    <div class="container">
+        <div class="page-header" id="banner">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1><i class='fa fa-cutlery'></i> Eggs Benedict</h1>
+
+                    <p class="lead">Based on the Harris-Benedict Equation</p>
+
+
+                    <blockquote>
+                        <p>"The <em>Harris–Benedict equation</em> (also called the Harris-Benedict principle) is a method used to estimate an individual's basal metabolic rate (<strong>BMR</strong>) and daily kilocalorie requirements. The estimated <strong>BMR</strong> value is multiplied by a number that corresponds to the individual's activity level. The resulting number is the recommended daily kilocalorie intake to maintain current body weight."</p>
+                        <small>The contributors of <cite title="Wikipedia">
           <a href="https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation">Wikipedia</a></cite></small>
-    </blockquote>
-        
-        
-  
-        <div class="panel panel-info">
-          <div class="panel-heading">
-            <h3 class="panel-title">Site Purpose</h3>
-          </div>
-          <div class="panel-body">
-            Tool used to estimate weight loss, over time. Providing a number of graphs to track changes based on user input.
-            Able to track multiple scenarios at once given different values.
-            
-            <div class="divider"><div class="border"></div>  &nbsp;</div>
-            
-        <div class="list-group">
-          <div class="list-group-item">
-            <div class="row-action-primary">
-              <i class="material-icons">input</i>
-            </div>
-            <div class="row-content">
-              <div class="least-content"></div>
-              <h4 class="list-group-item-heading">Input current stats</h4>
-        
-              <p class="list-group-item-text">Fill out the form to the right with your current stats.</p>
-            </div>
-          </div>
-          <div class="list-group-separator"></div>
-          <div class="list-group-item">
-            <div class="row-action-primary">
-              <i class="material-icons">autorenew</i>
-            </div>
-            <div class="row-content">
-              <div class="least-content"></div>
-              <h4 class="list-group-item-heading">Make a plan</h4>
-        
-              <p class="list-group-item-text">Decided the number of calories, 
-                  time a week you can workout, 
-                  and how long of a plan you want to calculate</p>
-            </div>
-          </div>
-          <div class="list-group-separator"></div>
-          <div class="list-group-item">
-            <div class="row-action-primary">
-              <i class="material-icons">new_releases</i>
-            </div>
-            <div class="row-content">
-              <div class="least-content"></div>
-              <h4 class="list-group-item-heading">Bam!</h4>
-        
-              <p class="list-group-item-text">See the data, presented in charts showing you the weight loss possibilties.</p>
-            </div>
-          </div>
-          <div class="list-group-separator"></div>
-        </div>
-            
-            
-          </div>
-        </div>
-          
-          
-      </div>
-      <div class="col-md-6">
-        <div class="well infobox">
-           {{> stats}}
-        </div>
-      </div>
-    </div>
-  </div>
+                    </blockquote>
 
-</div>
+
+
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Site Purpose</h3>
+                        </div>
+                        <div class="panel-body">
+                            Tool used to estimate weight loss, over time. Providing a number of graphs to track changes based on user input. Able to track multiple scenarios at once given different values.
+
+                            <div class="divider">
+                                <div class="border"></div> &nbsp;</div>
+
+                            <div class="list-group">
+                                <div class="list-group-item">
+                                    <div class="row-action-primary">
+                                        <i class="material-icons">input</i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content"></div>
+                                        <h4 class="list-group-item-heading">Input current stats</h4>
+
+                                        <p class="list-group-item-text">Fill out the form to the right with your current stats.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-action-primary">
+                                        <i class="material-icons">autorenew</i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content"></div>
+                                        <h4 class="list-group-item-heading">Make a plan</h4>
+
+                                        <p class="list-group-item-text">Decided the number of calories, time a week you can workout, and how long of a plan you want to calculate</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                                <div class="list-group-item">
+                                    <div class="row-action-primary">
+                                        <i class="material-icons">new_releases</i>
+                                    </div>
+                                    <div class="row-content">
+                                        <div class="least-content"></div>
+                                        <h4 class="list-group-item-heading">Bam!</h4>
+
+                                        <p class="list-group-item-text">See the data, presented in charts showing you the weight loss possibilties.</p>
+                                    </div>
+                                </div>
+                                <div class="list-group-separator"></div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+                    <div class="well infobox">
+                        {{> stats}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </template>

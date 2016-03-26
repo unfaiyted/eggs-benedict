@@ -2,20 +2,22 @@
 
     <form class="form-horizontal">
         <legend>Give us your details...</legend>
-        <div class="form-group">
+       
 
             <div style="padding-left: 30px; padding-right: 30px;">
                 <!-- Metric Input -->
-                <div class="togglebutton">
-                    <label>
-                        <input type="checkbox" class="conversion" name="conversion"> In Metric?
-                    </label>
+                 <div class="form-group">
+                    <div class="togglebutton">
+                        <label>
+                            <input type="checkbox" class="conversion" name="conversion" > In Metric?
+                        </label>
+                    </div>
                 </div>
                 <!-- Weight Input -->
                 <div class="form-group label-floating is-empty">
                     <label for="weight" class="control-label">Weight</label>
                     <br />
-                    <input type="number" class="form-control weight" id="weightIn" name="weight" required placeholder="{{weightType}}">
+                    <input type="number" class="form-control weight" id="weightIn" name="weight" placeholder="{{weightType}}" required>
                     <span class="material-input"></span>
                 </div>
 
@@ -23,26 +25,28 @@
                 <div class="form-group label-floating is-empty">
                     <label for="age" class="control-label">Age</label>
                     <br />
-                    <input type="number" class="form-control age" id="ageIn" name="age" required placeholder="25 years">
+                    <input type="number" class="form-control age" id="ageIn" name="age"  placeholder="25 years" required>
                     <span class="material-input"></span>
                 </div>
 
                 <!-- Gender Input -->
+
                 <div class="radio radio-primary">
                     <label>
-                        <input type="radio" name="gender" class="male" id="genderMale" value="male">
+                        <input type="radio" name="gender" class="male" id="genderMale" value="male" required>
                         <i class="fa fa-male"></i> Male
                     </label>
 
                     <label>
-                        <input type="radio" name="gender" class="female" id="genderFemale" value="female">
+                        <input type="radio" name="gender" class="female" id="genderFemale" value="female" required>
                         <i class="fa fa-female"></i> Female
                     </label>
                 </div>
+                
                 <!-- Activity Level Input -->
                 <div class="form-group">
                     <label for="activityLevel" class="control-label">How active are you?</label>
-                    <select id="activityLevel" name="activityLevel" class="form-control">
+                    <select id="activityLevel" name="activityLevel" class="form-control" required>
                         <option value="1">1 - Little or no exercise</option>
                         <option value="2">2 - Light exercise(1-3 days a week)</option>
                         <option value="3">3 - Moderate exercise(3-5 days a week)</option>
@@ -57,7 +61,7 @@
                 <div class="form-group label-floating is-empty">
                     <label for="height" class="control-label">cm</label>
                     <br />
-                    <input type="number" class="form-control height" id="heightIn" name="height" required placeholder="10 cm.">
+                    <input type="number" class="form-control height" id="heightIn" name="height" placeholder="10 cm." required>
                     <span class="material-input"></span>
                 </div>
                 {{else}}
@@ -65,14 +69,14 @@
                 <div class="form-group label-floating is-empty">
                     <label for="height_feet" class="control-label">Feet</label>
                     <br />
-                    <input type="number" class="form-control height_feet" id="heightInchesIn" name="height_feet" required placeholder="5 ft.">
+                    <input type="number" class="form-control height_feet" id="heightInchesIn" name="height_feet" placeholder="5 ft." required>
                     <span class="material-input"></span>
                 </div>
 
                 <div class="form-group label-floating is-empty">
                     <label for="height_inches" class="control-label">Inches</label>
                     <br />
-                    <input type="number" class="form-control height_inches" id="heightInchesIn" name="height_inches" required placeholder="10 in.">
+                    <input type="number" class="form-control height_inches" id="heightInchesIn" name="height_inches" placeholder="10 in." required>
                     <span class="material-input"></span>
                 </div>
 
@@ -82,7 +86,7 @@
 
 
 
-            </div>
+            
 
 
         </div>

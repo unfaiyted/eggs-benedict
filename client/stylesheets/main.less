@@ -15,7 +15,11 @@ body, #main {
     color: @primaryFontColor;
     font-family: 'Fauna One', serif;
 }
-
+body{
+    min-height: 400px;
+    margin-bottom: 75px;
+   clear: both;
+}
 
 
 /* Modal fix */
@@ -46,9 +50,7 @@ footer{
     padding-top: 5px;
     font-size: 1.5em;
 }
-@media screen and (max-device-width: 480px) {
-    .footer-text{font-size: 1em;}
-}
+
 @media screen and (max-width: 430px){
     .footer-text{font-size: 0.6em;}
 }
@@ -64,6 +66,9 @@ footer{
 .navi-button{
     position: absolute;
     bottom: 15px;
+}
+.navi-button img{
+    width: 35px;
 }
 .back-button{
     transition: 0.5s;
@@ -82,6 +87,24 @@ footer{
     transition: 0.5s;
     opacity: 0.8;
     right: 17px;
+}
+@media screen and (max-device-width: 480px) {
+    body{
+        margin-bottom: 60px;
+    }
+    .footer-text{
+        font-size: 0.7em;
+        padding-top: 2px;
+    }
+    footer{
+        height: 60px;
+    }
+    .navi-button{
+        bottom: 7px;
+    }
+    .navi-button img{
+        width: 37px;
+    }
 }
 .navi-button-text{
     position: absolute;
@@ -106,6 +129,14 @@ footer{
 }
 .forward-navi-desc{
     right: 65px;
+}
+.activeBatch{
+    background-color: #4d4d4d !important;
+    color: white !important;
+}
+.activeBatch:hover{
+    background-color: #4d4d4d !important;
+    color: white !important;
 }
 a {
     color: inherit;

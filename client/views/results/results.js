@@ -68,6 +68,15 @@ Template['results'].helpers({
     'batchNumber': function() {
            return Session.get('batchNumber');
            
+    },
+    'dropdownLabel' : function(){
+        var label;
+        if(Session.get('batchNumber') != undefined){
+            label = 'Scenario #' + Session.get('batchNumber');
+        }else{
+            label = 'Choose Scenario';
+        }
+        return label;
     }
     
 });
@@ -76,20 +85,17 @@ Template['results'].helpers({
 Template['results'].events({
     'click .batch': function(e,t) {
         e.preventDefault();
-        
-        
         var batchId = e.currentTarget.id;
-        var batchNumber = t.find("input[name=batch-" + batchId + "]").value
+        var batchNumber = t.find("input[name=batch-" + batchId + "]").value;
         
         Session.set('batchId',batchId);
         Session.set('batchNumber', batchNumber);
         
+        $('.batch').removeClass('activeBatch');
+        $('#' + Session.get('batchId')).addClass('activeBatch');
         
-    },
-    'click .deleteBatch': function() {
         
-        /* Confirm delete */
-    
+        
     },
     'click .prevPage': function(e) {
            e.preventDefault();
@@ -129,6 +135,11 @@ Template['results'].events({
         console.log(pageId);
         
          Session.set("currentPage",pageId);
+        
+    },
+    'click .delete-batch': function(){
+        Meteor.call('removeBatchData', Session.get('batchId'));
+        
         
     }
     

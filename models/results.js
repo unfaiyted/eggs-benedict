@@ -71,6 +71,9 @@ results.allow({
                 BMR = calculateBMR(gender, weight, height, age, activityAmount);
             }
             
+        },
+        'removeBatchData': function(batchId){
+            results.remove({batchId: batchId});
         }
     });
     
