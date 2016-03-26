@@ -26,7 +26,7 @@ Template['results'].helpers({
         
         var final = [];
         
-        for(var i = 0; i <arrayLength; i++) {
+        for(var i = 0; i < arrayLength; i++) {
             
             final.push({
                     batchId: distinctValues[i],
