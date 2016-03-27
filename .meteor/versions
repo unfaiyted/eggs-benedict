@@ -60,6 +60,7 @@ iron:location@1.0.11
 iron:middleware-stack@1.0.11
 iron:router@1.0.12
 iron:url@1.0.11
+joshowens:shareit@1.0.1
 jquery@1.11.4
 launch-screen@1.0.4
 less@2.5.1
@@ -104,6 +105,7 @@ session@1.1.1
 sha@1.0.4
 spacebars@1.0.7
 spacebars-compiler@1.0.7
+spiderable@1.0.9
 srp@1.0.4
 standard-minifiers@1.0.2
 templating@1.1.5

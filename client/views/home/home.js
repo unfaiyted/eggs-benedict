@@ -29,6 +29,19 @@ Template['footer'].helpers({
     }
 });
 
+
+Template['home'].helpers({
+    'shareData': function() {
+        
+        return {
+            title: "Eggs Benedict", 
+            author: "Dane and Dalton Miller",
+            summary: "Project built to display possible weight loss, over time!"
+        }
+    }
+    
+});
+
 Template['home'].events({
     
 });

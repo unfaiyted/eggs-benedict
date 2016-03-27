@@ -1,13 +1,11 @@
 <template name="home">
 
-
     {{> loginBox}}
 
     <script>
         $(function() {
             $.material.init();
             
-
         });
     </script>
 
@@ -25,8 +23,6 @@
                         <small>The contributors of <cite title="Wikipedia">
           <a href="https://en.wikipedia.org/wiki/Harris%E2%80%93Benedict_equation">Wikipedia</a></cite></small>
                     </blockquote>
-
-
 
                     <div class="panel panel-info">
                         <div class="panel-heading">
@@ -86,7 +82,10 @@
                 <div class="col-md-6">
                     <div class="well infobox">
                         {{> stats}}
+                     
                     </div>
+                       {{> shareit shareData}}
+                    
                 </div>
             </div>
         </div>
