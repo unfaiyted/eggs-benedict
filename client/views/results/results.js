@@ -163,8 +163,11 @@ Template['results'].events({
         Meteor.call('removeBatchData', Session.get('batchId'));
         
         
+    },
+     'click .chart-tab' : function(){
+        $(".chart-well").removeClass("hidden");
+
     }
-    
     
     
 });
