@@ -23,16 +23,16 @@ Template['stats'].helpers({
 });
 
 Template['stats'].events({
-    "change .conversion": function(event) {
+    "change .conversion": function(event,template) {
         Session.set("setMetric", event.target.checked);
     },
-    "submit form": function(event) {
+    "submit form": function(event, template) {
         event.preventDefault();
         
         
         var Metric = Session.get("setMetric");
 
-        var gender = event.target.gender.value;
+        var gender = template.find('input:radio[name=gender]:checked').value;
         var age = parseInt(event.target.age.value);
         if(parseInt(event.target.activityLevel.value) < 6 && parseInt(event.target.activityLevel.value) > 0){
             var activityLevelNum = parseInt(event.target.activityLevel.value);
@@ -71,9 +71,26 @@ Template['stats'].events({
 
         }
         
-        var sessionId =  Session.get("sessionId");
+
         
-        Meteor.call("insertStats", weight, height, gender, age, sessionId, function(error,result) {
+        if (localStorage.getItem("sessionId") === undefined) {
+            
+            var sessionId = Random.id();
+            Session.set("sessionId",sessionId); 
+            localStorage.setItem("sessionId",sessionId);
+        
+        } else {
+            var sessionId =  localStorage.getItem("sessionId");
+    
+        }
+        
+        console.log(gender);
+         console.log(weight);
+         console.log(height);
+        
+          console.log(sessionId.toString());
+        
+        Meteor.call("insertStats", weight, height, gender, age, sessionId.toString(), function(error,result) {
         if (error) {
             console.log("insertStats:" + error.reason);
         } else {

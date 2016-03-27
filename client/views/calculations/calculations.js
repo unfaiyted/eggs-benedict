@@ -6,7 +6,6 @@ Template['calculations'].helpers({
        
         var calc = calculations.findOne({"sessionId": localStorage.getItem("sessionId")}, {sort: {createdAt:-1}});
         
-        Session.set("calcId",calc._id);
         
        /*var calc =  calculations.findOne({},{"sessionId": Meteor.default_connection._lastSessionId});*/
         return {
