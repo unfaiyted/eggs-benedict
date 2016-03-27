@@ -32,7 +32,7 @@ if (Meteor.isServer) {
   
   Meteor.methods({
     'generateChart': function(chartName, resultsElement, sessionId, chartType){
-        var array = results.find({sessionId: sessionId}).fetch();
+        var array = results.find({"sessionId": sessionId}).fetch();
         var distinctArray   = _.uniq(array, false, function(d) {return d.batchId});
         var distinctValues = _.pluck(distinctArray, 'batchId');
         
@@ -42,7 +42,7 @@ if (Meteor.isServer) {
         var seriesEl = [];
         
         distinctValues.forEach(function(item){
-            var resultsData = results.find({batchId: item}, {sessionId: sessionId});
+            var resultsData = results.find({batchId: item, sessionId: sessionId});
             resultsDataArr.push(resultsData.fetch());
         });
         
@@ -66,11 +66,8 @@ if (Meteor.isServer) {
             index++;
             
         });
-        
-        console.log(seriesEl);
-        
-        
-        var resultElement = (
+
+      var resultElement = (
         {
           yAxis: {
             title: {

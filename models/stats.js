@@ -82,8 +82,6 @@ if (Meteor.isServer) {
                createdAt: new Date()
             });
             
-        
-            
         },
         deleteStats: function (statsId) {
             stats.remove(statsId);

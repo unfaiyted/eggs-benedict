@@ -35,12 +35,9 @@
 
                                     <h4 class="list-group-item-heading">You entered</h4>
 
-                                    <p class="list-group-item-text">240 Pounds | 16 years</p>
-                                    <p class="list-group-item-text">Female | 5 foot 4 in.</p>
-
-
-
-
+                                    <p class="list-group-item-text">{{resultData.calc.weight}} kgs | {{resultData.calc.age}} years</p>
+                                    <p class="list-group-item-text">{{resultData.calc.gender}} | {{resultData.calc.height}} cm.</p>
+                                    
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -52,8 +49,8 @@
 
                                     <h4 class="list-group-item-heading">Period</h4>
 
-                                    <p class="list-group-item-text">1200 calories per day </p>
-                                    <p class="list-group-item-text">30 min per day | 60 days</p>
+                                    <p class="list-group-item-text">{{resultData.caloriesIn}} calories per day </p>
+                                    <p class="list-group-item-text">{{resultData.caloriesOut}} min per day | {{resultData.days}} days</p>
                                     <p class="list-group-item-text"></p>
 
                                 </div>
@@ -77,8 +74,8 @@
                         <div class="action-secondary"><i class="material-icons">star_border</i>
                         </div>
                         <h4 class="list-group-item-heading">End Weight</h4>
-                        <p class="list-group-item-text">163 Pounds</p>
-                        <p class="list-group-item-text text-success"><i class="fa fa-arrow-down"></i> Down 22.3 Pounds</p>
+                        <p class="list-group-item-text">{{endData.WeightInKgs}} Kgs</p>
+                        <p class="list-group-item-text text-success"><i class="fa fa-arrow-down"></i> Down {{weightLoss}} kgs</p>
                     </div>
                 </div>
                 <div class="list-group-separator"></div>
@@ -86,9 +83,6 @@
 
 
         </div>
-
-
-
 
         <!-- Right Panel -->
         <div class="col-md-8">
@@ -108,8 +102,6 @@
                     </ul>
                 </li>
 
-
-
                 <li class="active"><a href="#home" data-toggle="tab">Tables</a>
                 </li>
                 <li><a href="#charts" data-toggle="tab">Charts</a>
@@ -121,7 +113,6 @@
 
 
             </ul>
-
 
             <div id="myTabContent" class="tab-content">
 
@@ -138,7 +129,7 @@
 
                                     <h4 class="list-group-item-heading">Current Base BMR</h4>
 
-                                    <p class="list-group-item-text">3200 Calories per day</p>
+                                    <p class="list-group-item-text">{{resultData.calc.BMR}} Calories per day</p>
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -156,7 +147,7 @@
 
                                     <h4 class="list-group-item-heading">Activity Adjusted BMR</h4>
 
-                                    <p class="list-group-item-text">3500 Caloies per day</p>
+                                    <p class="list-group-item-text">{{resultData.calc.caloriesPerDay}} Calories per day</p>
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -177,14 +168,13 @@
                         </thead>
                         <tbody>
 
-
                             {{#each result}}
-                            <tr>
-                                <td>{{day}}</td>
-                                <td>{{WeightInKgs}} kgs</td>
-                                <td>{{WeightInLbs}} lbs</td>
-                                <td>{{BMR}}</td>
-                            </tr>
+                                <tr>
+                                    <td>{{day}}</td>
+                                    <td>{{WeightInKgs}} kgs</td>
+                                    <td>{{WeightInLbs}} lbs</td>
+                                    <td>{{BMR}}</td>
+                                </tr>
 
                             {{/each}}
 
@@ -212,10 +202,10 @@
 
                 </div>
 
-                <!-- Charts Data -->
-                <div class="tab-pane fade active in" id="charts">
+                <!-- Charts Data  -->
+                <div class="tab-pane fade active in hidden" id="charts">
                     <div class="well infobox">
-                        {{> charts}}
+                       {{> charts}}
                     </div>
                 </div>
 
@@ -228,7 +218,7 @@
                             <div class="modal-content">
                               <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title" id="myModalLabel"><b>ARE YOU SURE!?!?!</b></h4>
+                                <h4 class="modal-title" id="myModalLabel"><b>ARE YOU SURE!?</b></h4>
                               </div>
                               <div class="modal-body">
                                 This action will <span style="color:red;"><b>PERMANANTLY DELETE </b></span><i>{{dropdownLabel}} from your data.</i>

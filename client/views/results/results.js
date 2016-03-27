@@ -9,9 +9,20 @@ Template['results'].helpers({
             var currentPage = 1;
         }
         
+        var batchId;
+        if (Session.get("batchId") == undefined) {
+            
+            /*var result = results.findOne({"sessionId": localStorage.getItem("sessionId")},{sort: {createdAt: -1}});
+            
+            batchId = result.batchId ; */
+            
+        } else {
+            batchId = Session.get("batchId");
+        }
+       
         var skipCount = (currentPage -1) * 15;
     
-        return results.find({"sessionId": localStorage.getItem("sessionId"), "batchId": Session.get('batchId')},{limit: 15, skip: skipCount});
+        return results.find({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{limit: 15, skip: skipCount});
  
     },        
     'resultBatch': function() {
@@ -35,9 +46,23 @@ Template['results'].helpers({
             
         }
     
-        
         return final; 
         
+    },
+    'resultData': function() {
+        var batchId = Session.get("batchId");
+        return results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId});
+    },
+    'endData': function() {
+        var batchId = Session.get("batchId");    
+      return results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{sort: {day: -1}}); 
+    },
+    'weightLoss': function() {
+      
+        var weightloss = results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{sort: {day: -1}});
+        
+        return (parseFloat(weightloss.calc.weight) - parseFloat(weightloss.WeightInKgs)).toFixed(2);
+          
     },
     'pageList': function() {
         
@@ -47,8 +72,6 @@ Template['results'].helpers({
         var final = [];
         
         Session.set('maxPages',pages);
-        
-        
         
         for(var i = 1; i <= pages; i++) {
             
@@ -63,7 +86,6 @@ Template['results'].helpers({
         
         return final;
           
-        
     },
     'batchNumber': function() {
            return Session.get('batchNumber');
@@ -88,8 +110,9 @@ Template['results'].events({
         var batchId = e.currentTarget.id;
         var batchNumber = t.find("input[name=batch-" + batchId + "]").value;
         
-        Session.set('batchId',batchId);
+        Session.set('batchId', batchId);
         Session.set('batchNumber', batchNumber);
+        Session.set("currentPage", 1);
         
         $('.batch').removeClass('activeBatch');
         $('#' + Session.get('batchId')).addClass('activeBatch');
@@ -132,7 +155,6 @@ Template['results'].events({
         
         var pageId = e.currentTarget.text;
         
-        console.log(pageId);
         
          Session.set("currentPage",pageId);
         

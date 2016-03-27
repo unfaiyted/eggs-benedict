@@ -77,7 +77,10 @@ Template['stats'].events({
         if (error) {
             console.log("insertStats:" + error.reason);
         } else {
-             Meteor.call("insertCalc", gender, weight, height, age, activityLevel, sessionId, function(error,result){
+            
+            var inputStats = stats.findOne({"sessionId": localStorage.getItem("sessionId")},{sort: {createdAt: -1}});
+            
+             Meteor.call("insertCalc", gender, weight, height, age, activityLevel, sessionId, inputStats, function(error,result){
                 
                 if(error) {
                  console.log("insertCalc:" + error.reason); 

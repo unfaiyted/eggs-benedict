@@ -23,23 +23,28 @@ Template['calculations'].helpers({
 });
 
 Template['calculations'].events({
-    'click #calcSlider': function(e,t) {
-        
-    },
     'click .calc-button': function(e,t) {
             
             var sessionId     =  Session.get("sessionId");
             var caloriesIn    =  parseInt(t.find("input[name=caloriesIn]").value); 
             var caloriesOut   =  parseInt(t.find("input[name=caloriesOut]").value);
             var days          =  parseInt(t.find("input[name=hiddenDays]").value);
-                  
-            Meteor.call("batchGenerator", caloriesIn, caloriesOut, days, sessionId, function(error, reason){
+
+            var calc = calculations.findOne({"sessionId": localStorage.getItem("sessionId")},{sort:{createdAt: -1}});
+
+            Meteor.call("batchGenerator", caloriesIn, caloriesOut, days, sessionId, calc, function(error, reason){
                   
                   if (error) {
                        "batchGenerator:" + error.reason
                   } else {
                         /* success! */
-                         Router.go('/results/')
+                        var batchId = results.findOne(
+                        {"sessionId": localStorage.getItem("sessionId")},{sort: {createdAt: -1}}
+                        ).batchId;
+                        
+                        Session.set("batchId", batchId);
+                        
+                         Router.go('/results/');
                   }
                   
                   

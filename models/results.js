@@ -20,7 +20,7 @@ results.allow({
 
  
     Meteor.methods({
-        'batchGenerator': function(caloriesIn, caloriesOut, days, sessionId){
+        'batchGenerator': function(caloriesIn, caloriesOut, days, sessionId, calc){
             
             check(caloriesIn, Number);
             check(caloriesOut, Number);
@@ -58,13 +58,17 @@ results.allow({
                 results.insert({
                     batchId: batchId,
                     sessionId: sessionId,
+                    calc: calc,
                     createdBy: userId,
                     createdAt: new Date(),
                     WeightInCals: WeightInCals.toFixed(2),
                     WeightInKgs: WeightInKgs.toFixed(2),
                     WeightInLbs: WeightInLbs.toFixed(2),
                     day: day,
-                    BMR: BMR.toFixed(2)
+                    BMR: BMR.toFixed(2),
+                    caloriesIn: caloriesIn,
+                    caloriesOut: caloriesOut,
+                    days: days
                 });
               
                 weight = WeightInKgs;
