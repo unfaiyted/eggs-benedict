@@ -145,10 +145,6 @@ Template['loginBox'].events({
         }
     });
       
-
-
-
-
       setTimeout(function() {
              $this.button('reset');
        }, 2000);
@@ -163,17 +159,17 @@ Template['loginBox'].events({
         $this.button('loading');
    
         
-     Meteor.loginWithFacebook({},
-      
-       function(error,result) {
-        if (error) {
-            Session.set("formError", true);
-            Session.set("errorDetail", error.reason);
-        }else {
+     Meteor.loginWithFacebook({},function(error,result) {
+            if (error) {
+              Session.set("formError", true);
+              Session.set("errorDetail", error.reason);
+            
+            }else {
               Session.set("formError", false);
-            Router.go('/');
+              Router.go('/');
               $("#loginModal").modal("hide");
-        }
+              
+            }
     });
 
 

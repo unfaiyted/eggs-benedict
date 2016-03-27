@@ -99,6 +99,18 @@ Template['results'].helpers({
             label = 'Choose Scenario';
         }
         return label;
+    },
+            'shareData': function() {
+                
+        /* Share weight loss plan*/
+                
+        return {
+            title: "Eggs Benedict", 
+            author: "Dane and Dalton Miller",
+            summary: "Project built to display possible weight loss, over time!"
+        };
+        
+        
     }
     
 });
