@@ -6,15 +6,43 @@ Template['calculations'].helpers({
        
         var calc = calculations.findOne({"sessionId": localStorage.getItem("sessionId")}, {sort: {createdAt:-1}});
         
+        var metric = Session.get("setMetric");
         
-       /*var calc =  calculations.findOne({},{"sessionId": Meteor.default_connection._lastSessionId});*/
-        return {
+        
+        if (metric == true) {
+        
+                  
+             return {
               BMR: Math.round(calc["BMR"]),
               age: calc["age"], 
               gender: calc["gender"],
               height: calc["height"],
+              metric: true,
               weight: Math.round(calc["weight"])
-        };
+            };
+                  
+        
+              
+        } else {
+             
+            var height_inches =  Math.round((calc["height"] * 0.393701) % 12).toFixed(0);
+            var height_feet   =  Math.floor((calc["height"] * 0.393701) / 12).toFixed(0); 
+              
+                 return {
+              BMR: Math.round(calc["BMR"]),
+              age: calc["age"], 
+              gender: calc["gender"],
+              height_inches: height_inches,
+              height_feet: height_feet,
+              metric: false,
+              weight: Math.round(calc["weight"] * 2.20462)
+            };
+              
+              
+        }
+        
+       /*var calc =  calculations.findOne({},{"sessionId": Meteor.default_connection._lastSessionId});*/
+      
     },
     'sliderValue': function() {
         return Session.get("sliderChange");

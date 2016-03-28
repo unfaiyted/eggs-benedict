@@ -30,7 +30,11 @@ Template['stats'].events({
         event.preventDefault();
         
         
-        var Metric = Session.get("setMetric");
+        var metric = Session.get("setMetric");
+        
+        if (Session.get("setMetric") == undefined) {
+            metric = false;
+        }
 
         var gender = template.find('input:radio[name=gender]:checked').value;
         var age = parseInt(event.target.age.value);
@@ -59,7 +63,7 @@ Template['stats'].events({
             alert('PLS NO');
         }
         
-        if (Metric == true) {
+        if (metric == true) {
             var weight = parseInt(event.target.weight.value);
             var height = parseInt(event.target.height.value);
 
@@ -84,13 +88,8 @@ Template['stats'].events({
     
         }
         
-        console.log(gender);
-         console.log(weight);
-         console.log(height);
         
-          console.log(sessionId.toString());
-        
-        Meteor.call("insertStats", weight, height, gender, age, sessionId.toString(), function(error,result) {
+        Meteor.call("insertStats", weight, height, gender, age, metric, sessionId.toString(), function(error,result) {
         if (error) {
             console.log("insertStats:" + error.reason);
         } else {

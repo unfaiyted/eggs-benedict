@@ -11,7 +11,20 @@
 
         <div class="alert alert-dismissible alert-info">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <strong>Heads up!</strong> Based on the information you put in your BMR is <strong>{{calculation.BMR}}</strong>. This was calculated based on your input as a {{calculation.age}} year old {{calculation.gender}}, weighing {{calculation.weight}} kgs with a height of {{calculation.height}} centimeters.
+            <strong>Heads up!</strong> Based on the information you put in your BMR is <strong>{{calculation.BMR}}</strong>. 
+            
+            This was calculated based on your input as a {{calculation.age}} year old {{calculation.gender}},
+            
+            {{#if metric}}
+            
+            weighing {{calculation.weight}} kgs with a height of {{calculation.height}} centimeters.
+            
+            {{else}}
+            
+              weighing {{calculation.weight}} lbs with a height of {{calculation.height_feet}} feet {{calculation.height_inches}} inches.
+            
+            {{/if}}
+            
             <p>If that information does not seem correct, click <a href="/">here</a> to start over.</p>
         </div>
 
@@ -102,7 +115,8 @@
     <div class="row">
         <div>
              <div class="col-md-12">
-                <h3 class="text-center calcSpacer "><i class="material-icons">&#xE3FC;</i></h3>     
+                <h3 class="text-center calcSpacer "><i class="material-icons">&#xE3FC;</i></h3> 
+                
             </div>
             
         </div>

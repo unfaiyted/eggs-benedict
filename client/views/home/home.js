@@ -29,7 +29,6 @@ Template['footer'].helpers({
     }
 });
 
-
 Template['home'].helpers({
     'shareData': function() {
         return {

@@ -111,7 +111,7 @@ Template['loginBox'].events({
             Session.set("errorDetail", error.reason);
         }else {
               Session.set("formError", false);
-            Router.go('/');
+            Router.go('/profile/');
               $("#loginModal").modal("hide");
         }
     });
@@ -140,7 +140,7 @@ Template['loginBox'].events({
             Session.set("errorDetail", error.reason);
         }else {
               Session.set("formError", false);
-            Router.go('/');
+              Router.go('/profile/');
               $("#loginModal").modal("hide");
         }
     });
@@ -166,16 +166,19 @@ Template['loginBox'].events({
             
             }else {
               Session.set("formError", false);
-              Router.go('/');
+              Router.go('/profile/');
+              
+                setTimeout(function() {
+             $this.button('reset');
+              }, 2000);
+              
               $("#loginModal").modal("hide");
               
             }
     });
 
 
-      setTimeout(function() {
-             $this.button('reset');
-       }, 2000);
+     
        
       
       

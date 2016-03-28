@@ -10,6 +10,11 @@ stats.attachSchema(
       type: Number,
       label: "Height",
       decimal: true
+    },
+     metric: {
+      type: Boolean,
+      label: "Metric",
+    
     }, 
     sessionId: {
       type: String,
@@ -65,17 +70,20 @@ if (Meteor.isServer) {
   });
 
    Meteor.methods({
-        insertStats: function(weight, height, gender, age, sessionId){
+        insertStats: function(weight, height, gender, age, metric, sessionId){
+            
             check(weight, Number);
             check(height, Number);
             check(gender, String);
             check(age, Number);
             check(sessionId, String);
+            check(metric, Boolean);
             
             stats.insert({
                weight: weight,
                height: height,
                gender: gender,
+               metric: metric,
                age: age,
                sessionId: sessionId,
                updatedAt: new Date(),

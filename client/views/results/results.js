@@ -107,7 +107,10 @@ Template['results'].helpers({
         return {
             title: "Eggs Benedict", 
             author: "Dane and Dalton Miller",
-            summary: "Project built to display possible weight loss, over time!"
+            summary: "Project built to display possible weight loss, over time!",
+            description: "Project built to display possible weight loss, over time!",
+            thumbnail: Meteor.absoluteUrl() + 'images/icon.png',
+            media:  Meteor.absoluteUrl() + 'images/icon.png'
         };
         
         
