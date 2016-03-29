@@ -9,15 +9,26 @@ Template['results'].helpers({
             var currentPage = 1;
         }
         
-        var batchId;
+      
         if (Session.get("batchId") == undefined) {
             
-            /*var result = results.findOne({"sessionId": localStorage.getItem("sessionId")},{sort: {createdAt: -1}});
+            var latest = results.findOne({"sessionId": localStorage.getItem("sessionId")},{sort: {createdAt: -1}});
+           
+        
+           var array = results.find({"sessionId": localStorage.getItem("sessionId")}).fetch();
+        
+            var distinctArray   = _.uniq(array, false, function(d) {return d.batchId});
+            var distinctValues = _.pluck(distinctArray, 'batchId');
             
-            batchId = result.batchId ; */
+            var arrayLength = distinctValues.length;
+          
+          Session.set('batchNumber', arrayLength);
+          Session.set('batchId', latest.batchId);
+            
+             var batchId = latest.batchId;
             
         } else {
-            batchId = Session.get("batchId");
+            var batchId = Session.get("batchId");
         }
        
         var skipCount = (currentPage -1) * 15;
@@ -41,7 +52,7 @@ Template['results'].helpers({
             
             final.push({
                     batchId: distinctValues[i],
-                    number: i
+                    number: (i+1)
             });
             
         }
@@ -107,20 +118,16 @@ Template['results'].helpers({
       
         var starting = parseInt(Session.get("startWeight")).toFixed(2);
         var ending = parseInt(Session.get("endWeight")).toFixed(2);
-         var metric = Session.get("setMetric");
         var final = starting - ending;
+       
+        var metric = Session.get("setMetric");
         
          if (metric == true) {
              return final;
          } else {
              return Math.round(final *  2.20462);
          }
-                
-      
-         
-        
-        
-          
+   
     },
     'pageList': function() {
         
@@ -151,6 +158,7 @@ Template['results'].helpers({
     },
     'dropdownLabel' : function(){
         var label;
+
         if(Session.get('batchNumber') != undefined){
             label = 'Scenario #' + Session.get('batchNumber');
         }else{
@@ -180,15 +188,23 @@ Template['results'].helpers({
 Template['results'].events({
     'click .batch': function(e,t) {
         e.preventDefault();
-        var batchId = e.currentTarget.id;
-        var batchNumber = t.find("input[name=batch-" + batchId + "]").value;
         
-        Session.set('batchId', batchId);
-        Session.set('batchNumber', batchNumber);
-        Session.set("currentPage", 1);
         
-        $('.batch').removeClass('activeBatch');
-        $('#' + Session.get('batchId')).addClass('activeBatch');
+         $( ".batchTable" ).delay( 0 ).fadeOut( 'slow', function() {
+             
+            var batchId = e.currentTarget.id;
+            var batchNumber = t.find("input[name=batch-" + batchId + "]").value;
+        
+            Session.set('batchId', batchId);
+            Session.set('batchNumber', batchNumber);
+            Session.set("currentPage", 1);
+        
+            $('.batch').removeClass('activeBatch');
+            $('#' + Session.get('batchId')).addClass('activeBatch');
+        
+        $( ".batchTable" ).delay(500).fadeIn( 'slow' );
+
+      });
         
         
         
