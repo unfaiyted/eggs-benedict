@@ -34,10 +34,14 @@
                                 <div class="row-content">
 
                                     <h4 class="list-group-item-heading">You entered</h4>
-
-                                    <p class="list-group-item-text">{{resultData.calc.weight}} kgs | {{resultData.calc.age}} years</p>
-                                    <p class="list-group-item-text">{{resultData.calc.gender}} | {{resultData.calc.height}} cm.</p>
-                                    
+                                        
+                                    {{#if resultData.metric}}    
+                                        <p class="list-group-item-text">{{resultData.weight}} kgs | {{resultData.age}} years</p>
+                                        <p class="list-group-item-text">{{resultData.gender}} | {{resultData.height}} cm.</p>
+                                    {{else}}
+                                        <p class="list-group-item-text">{{resultData.weight}} lbs | {{resultData.age}} years</p>
+                                        <p class="list-group-item-text">{{resultData.gender}} | {{resultData.height_feet}} ft {{resultData.height_inches}} in.</p>
+                                    {{/if}}
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -74,8 +78,15 @@
                         <div class="action-secondary"><i class="material-icons">star_border</i>
                         </div>
                         <h4 class="list-group-item-heading">End Weight</h4>
-                        <p class="list-group-item-text">{{endData.WeightInKgs}} Kgs</p>
-                        <p class="list-group-item-text text-success"><i class="fa fa-arrow-down"></i> Down {{weightLoss}} kgs</p>
+                        {{#if resultData.metric}}
+                            <p class="list-group-item-text">{{endData.WeightInKgs}} Kgs</p>
+                            <p class="list-group-item-text text-success"><i class="fa fa-arrow-down"></i> Down {{weightLoss}} Kgs</p>
+                        {{else}}
+                             <p class="list-group-item-text">{{endData.WeightInLbs}} Lbs</p>
+                            <p class="list-group-item-text text-success"><i class="fa fa-arrow-down"></i> Down {{weightLoss}} Lbs</p>
+            
+                        {{/if}}
+                        
                     </div>
                 </div>
                 <div class="list-group-separator"></div>
@@ -126,6 +137,8 @@
                 <!-- Table Data -->
                 <div class="tab-pane fade active in" id="home">
 
+                
+            <div class="row">
                     <div class="col-md-6">
                         <div class="list-group">
                             <div class="list-group-item">
@@ -136,7 +149,7 @@
 
                                     <h4 class="list-group-item-heading">Current Base BMR</h4>
 
-                                    <p class="list-group-item-text">{{resultData.calc.BMR}} Calories per day</p>
+                                    <p class="list-group-item-text">{{resultData.BMR}} Calories per day</p>
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -154,7 +167,7 @@
 
                                     <h4 class="list-group-item-heading">Activity Adjusted BMR</h4>
 
-                                    <p class="list-group-item-text">{{resultData.calc.caloriesPerDay}} Calories per day</p>
+                                    <p class="list-group-item-text">{{resultData.caloriesPerDay}} Calories per day</p>
                                 </div>
                             </div>
                             <div class="list-group-separator"></div>
@@ -162,14 +175,22 @@
                         </div>
                     </div>
 
+                </div>
+                
+                <div class="row">
 
+                    <div class="col-md-12">                    
                     <!-- Table output -->
                     <table class="table table-striped table-hover ">
                         <thead>
                             <tr>
                                 <th>Day</th>
+                            {{#if resultData.metric}} 
                                 <th>Weight in Kgs</th>
+                              {{else}} 
                                 <th>Weight in Pounds</th>
+                             {{/if}}
+                                        
                                 <th>BMR</th>
                             </tr>
                         </thead>
@@ -178,8 +199,14 @@
                             {{#each result}}
                                 <tr>
                                     <td>{{day}}</td>
-                                    <td>{{WeightInKgs}} kgs</td>
-                                    <td>{{WeightInLbs}} lbs</td>
+                                    
+                                    
+                                    {{#if resultData.metric}} 
+                                        <td>{{WeightInKgs}} kgs</td>
+                                    {{else}} 
+                                        <td>{{WeightInLbs}} lbs</td>
+                                    {{/if}}
+                                    
                                     <td>{{BMR}}</td>
                                 </tr>
 
@@ -187,7 +214,8 @@
 
                         </tbody>
                     </table>
-
+                </div>
+            </div>
 
                     <div class="centerBlock" style="float:none;">
 
@@ -206,13 +234,15 @@
 
                     </div>
 
+                
+
 
                 </div>
 
                 <!-- Charts Data  -->
                 <div class="tab-pane fade active in " id="charts">
                     <div class="well infobox hidden chart-well">
-                       {{> charts}}
+                      <!--  {{> charts}}  Need to dynmaically load these!! too much resource-->
                     </div>
                 </div>
 

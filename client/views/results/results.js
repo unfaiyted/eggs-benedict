@@ -51,17 +51,75 @@ Template['results'].helpers({
     },
     'resultData': function() {
         var batchId = Session.get("batchId");
-        return results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId});
+        
+        var data = results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId});
+        var metric = Session.get("setMetric");
+        
+        Session.set("startWeight",data.calc.weight);
+        
+        /* I should rewrite this using some sort of array push */
+         if (metric == true) {
+        
+             return {
+                  BMR: Math.round(data.calc.BMR),
+                  age: data.calc.age, 
+                  gender: data.calc.gender,
+                  height: data.calc.height,
+                  metric: true,
+                  weight: Math.round(data.calc.weight),
+                  caloriesIn: data.caloriesIn, 
+                  caloriesOut: data.caloriesOut,
+                  days: data.days,
+                  caloriesPerDay: data.calc.caloriesPerDay
+            };
+                  
+        } else {
+             
+            var height_inches =  Math.round((data.calc.height * 0.393701) % 12).toFixed(0);
+            var height_feet   =  Math.floor((data.calc.height * 0.393701) / 12).toFixed(0); 
+              
+            return {
+                  BMR: Math.round(data.calc.BMR),
+                  age: data.calc.age, 
+                  gender: data.calc.gender,
+                  height_inches: height_inches,
+                  height_feet: height_feet,
+                  metric: false,
+                  weight: Math.round(data.calc.weight * 2.20462),
+                  caloriesIn: data.caloriesIn, 
+                  caloriesOut: data.caloriesOut,
+                  days: data.days,
+                  caloriesPerDay: data.calc.caloriesPerDay
+            };
+              
+        }
+
     },
     'endData': function() {
         var batchId = Session.get("batchId");    
-      return results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{sort: {day: -1}}); 
+        var data = results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{sort: {day: -1}});
+        
+        Session.set("endWeight",data.WeightInKgs);
+        
+      return data;
     },
     'weightLoss': function() {
       
-        var weightloss = results.findOne({"sessionId": localStorage.getItem("sessionId"), "batchId": batchId},{sort: {day: -1}});
+        var starting = parseInt(Session.get("startWeight")).toFixed(2);
+        var ending = parseInt(Session.get("endWeight")).toFixed(2);
+         var metric = Session.get("setMetric");
+        var final = starting - ending;
         
-        return (parseFloat(weightloss.calc.weight) - parseFloat(weightloss.WeightInKgs)).toFixed(2);
+         if (metric == true) {
+             return final;
+         } else {
+             return Math.round(final *  2.20462);
+         }
+                
+      
+         
+        
+        
           
     },
     'pageList': function() {
