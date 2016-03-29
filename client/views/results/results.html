@@ -1,5 +1,8 @@
 <template name="results">
-
+  {{#if Template.subscriptionsReady}}
+  
+   <div class="load-wrapper">
+  
     <div class="container fill" style="margin-top: 40px; margin-bottom: 60px;">
 
         <div class="col-md-12">
@@ -277,5 +280,22 @@
 
         </div>
 
+</div>
+
+{{else }}
+    
+    <div class="container ">
+       <div class="loading-data loader">
+       
+       
+      <div class='uil-ring-css centerBlock' style='transform:scale(0.56);'><div></div></div>
+       
+        <h4 class="text-center">Loading Data...</h4>
+        
+        </div>
+    </div>
+        
+
+{{/if}}
 
 </template>

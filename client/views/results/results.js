@@ -1,4 +1,28 @@
-Meteor.subscribe('results');
+/* Meteor.subscribe('results'); */
+
+/* Applied for loading tempalte */
+Template['results'].onCreated(function () {
+  // Use this.subscribe inside onCreated callback
+
+   this.subscribe( 'results', function() {
+      
+    
+    $( ".loader" ).delay( 1000 ).fadeOut( 'slow', function() {
+      
+      $( ".load-wrapper" ).fadeIn( 'slow' );
+    
+    });
+  });
+  
+  
+});
+
+Template['results'].onRendered( function() {
+  $( ".loader" ).delay( 650 ).fadeIn();
+ 
+    
+});
+
 
 Template['results'].helpers({
     'result': function(){
@@ -22,9 +46,9 @@ Template['results'].helpers({
             
             var arrayLength = distinctValues.length;
           
-          Session.set('batchNumber', arrayLength);
-          Session.set('batchId', latest.batchId);
-            
+              Session.set('batchNumber', arrayLength);
+              Session.set('batchId', latest.batchId);
+                
              var batchId = latest.batchId;
             
         } else {
