@@ -1,22 +1,37 @@
 # egg-benedict
 
-This project is going to great a way for people to project weight loss. Using meteor and #meteor-boilerplate as a starting point
+This project is going to great a way for people to project weight loss.
+Using meteor and #meteor-boilerplate as a starting point. 
+
+Designed to test some basic app functionality of Meteor.js
+
+
+* Uses Meteor.js
+    * Based on node.js
+* Uses mongodb within Meteor 
+* Allows user to calculate different potenail scenarios
+
+To be hosted on: 
+
+eggs-benedict.herokuapp.com
 
 <!-- toc -->
 
-* [Work in progress]
+* [Installing Project]
+* [Licence]
 
 <!-- toc stop -->
 
-Will fill this out as we have more information
+Will add data as more information is created with functionality
 
 ## Installing our project
 
-```bash
-some command -do
-```
+Install meteor on the host system (meteor.js)
 
-Explanation of what I just said  
+Clone Repo and run:
+```bash
+meteor 
+```
 
 ## License
 This code has an MIT License, see the LICENSE.txt for more information.
