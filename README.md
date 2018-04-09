@@ -26,6 +26,7 @@ Will add data as more information is created with functionality
 
 ## Installing our project
 
+
 Install meteor on the host system (meteor.js)
 
 Clone Repo and run:
